@@ -4,6 +4,10 @@ import logging
 import os
 import asyncio
 import json  # For saving and loading settings
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -183,7 +187,7 @@ async def on_message(message):
             ]
             await asyncio.gather(*relay_tasks)
 
-# Retrieve token securely and check for existence
+# Retrieve the bot token from environment variables
 token = os.getenv("DISCORD_TOKEN")
 if not token:
     raise ValueError("DISCORD_TOKEN environment variable is not set.")
