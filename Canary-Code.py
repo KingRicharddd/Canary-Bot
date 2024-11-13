@@ -4,8 +4,6 @@ import logging
 import os
 import asyncio
 import json  # For saving and loading settings
-from flask import Flask
-from threading import Thread
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -184,9 +182,6 @@ async def on_message(message):
                 if target_guild_id != message.guild.id and relay_enabled[group_id].get(target_guild_id, False)
             ]
             await asyncio.gather(*relay_tasks)
-
-# Start the web server to keep the bot alive
-keep_alive()
 
 # Retrieve token securely and check for existence
 token = os.getenv("DISCORD_TOKEN")
